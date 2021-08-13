@@ -1,0 +1,31 @@
+/*
+ * PIR sensor tester
+ */
+ 
+int ledPin = 13;                // choose the pin for the LED
+int ledState = LOW;
+int interruptionPin = 2;               // choose the input pin (for PIR sensor)
+int pirState = LOW;             // we start, assuming no motion detected
+ 
+void setup() {
+  pinMode(ledPin, OUTPUT);      // declare LED as output
+  pinMode(interruptionPin, INPUT);     // declare sensor as input
+  attachInterrupt(digitalPinToInterrupt(interruptionPin), Motion, CHANGE);
+  Serial.begin(9600);
+}
+
+
+void loop(){
+  int pir_state = digitalRead(interruptionPin);
+}
+void Motion(){
+  int pir_state = digitalRead(interruptionPin);
+  if(pir_state != pirState) {
+
+  ledState = !ledState;
+
+  digitalWrite(ledPin, ledState);
+
+  Serial.println("Motion Detected");
+  }
+}
